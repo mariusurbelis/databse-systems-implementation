@@ -27,8 +27,9 @@
                 </div>
                 
                 <div class="dev row">
-                    <div class="dev col-6"><a href="executive-manager-orders.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Executive Manager Screen</button></a></div>
-                    <div class="dev col-6"><a href="mechanic/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Mechanic Screen</button></a></div>
+                    <div class="dev col-4"><a href="executive-manager-orders.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Executive Manager</button></a></div>
+                    <div class="dev col-4"><a href="mechanic/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Mechanic</button></a></div>
+                    <div class="dev col-4"><a href="client/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Client</button></a></div>
                 </div>
                 
                 <div class="mt-5 row">
@@ -62,11 +63,16 @@
                     <div class="col-6">
                         <h1>Screens</h1>
                         <p>1. Executive Manager<br>2. Branch Manager<br>3. Mechanic<br>4. Client repair tracking</p>
+                        <p>We should all contribute equally, thus split the work six ways</p>
+                        <p>For example the mechanic screen is divided into elements (individual php pages) so everone could do a bit of it</p>
                     </div>
                     
                     <div class="col-6">
                         <h1>Tasks</h1>
-                        <p></p>
+                        <p>- Create sample data and add it to the database</p>
+                        <p>- Try reading the sample data from the database</p>
+                        <p>- Create a real usage scenario</p>
+                        <p>- Ensure the process of getting a car repaired is smooth from start to finish</p>
                     </div>
                 </div>
 
