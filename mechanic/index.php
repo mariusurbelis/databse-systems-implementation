@@ -9,6 +9,10 @@
         .dev {
             border: solid 2px green;
         }
+        
+        .devr {
+            border: solid 2px red;
+        }
     
     </style>
 
@@ -18,9 +22,22 @@
 
     <div class="container-fluid">
     
-        <div class="row">
-            <div class="dev col-8">ok</div>
-            <div class="dev col-4">ok</div>
+        <div style="height: 100vh" class="row">
+            <div class="dev col-8">
+            
+                <div style="height: 50vh" class="row">
+                    <div class="devr col-7 h3"><?php include 'cars-awaiting-repair.php';?></div>
+                    <div class="devr col-5 h3"><?php include 'cars-in-repair.php';?></div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6 h2">Mechanic Notes #1</div>
+                    <div class="col-6 h2">Mechanic Notes #2</div>
+                </div>
+            
+            </div>
+            
+            <div class="dev col-4 h1"><?php include 'parts-search.php';?></div>
         </div>
     
     </div>
