@@ -14,7 +14,7 @@
 
             <div class="col-4 text-right shadow p-3">
 
-                <form name="Add New Student" action="add-supplier.php" method="post">
+                <form name="Add New Student" action="post/add-supplier.php" method="post">
                     <p style="margin-bottom: 2em"><b>Add a Supplier</b></p>
 
                     <p>ID: <input type="text" name="id"></p>

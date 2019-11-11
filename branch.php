@@ -14,10 +14,10 @@
 
             <div class="col-3 text-right shadow p-3">
 
-                <form name="Add New Student" action="add-branch.php" method="post">
+                <form name="Add New Student" action="post/add-branch.php" method="post">
                     <p style="margin-bottom: 2em"><b>Add a Branch</b></p>
 
-                    <p>BranchID: <input type="text" name="branchid"></p>
+                    <p>BranchID: <input type="text" name="id"></p>
                     <p>Address: <input type="text" name="address"></p>
 
                     <input style="margin-top: 1em" class="btn btn-primary" type="submit" name="submit" value="Submit" />
@@ -46,7 +46,7 @@
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
-                        echo "Branch ID: " . $row["BranchID"]. " - Address: " . $row["Address"]. "<br>";
+                        echo "Branch ID: " . $row["ID"]. " - Address: " . $row["Address"]. "<br>";
                     }
                 } else {
                     echo "0 results";

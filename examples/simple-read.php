@@ -8,7 +8,6 @@ if (mysqli_connect_errno())
 
 // Perform queries
 $result = mysqli_query($con,"SELECT * FROM branch WHERE BranchID = 876;");
-//mysqli_query($con,"INSERT INTO Persons (FirstName,LastName,Age) VALUES ('Glenn','Quagmire',33)");
 
 while ($row = $result->fetch_assoc()) {
     echo $row['Address']."<br>";
