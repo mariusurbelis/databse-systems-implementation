@@ -68,9 +68,11 @@
                     </div>
                     
                     <div class="dev col-8">
-                            <div class="col-4 ">Service ID</div>
-                            <div class="col-4 "> Status: </div>
-                            <div class="col-4 "> Delivery Date</div> 
+                        <div class=" row">
+                            <div class="col-4 text-left ">Service ID</div>
+                            <div class="col-4  text-center "> Status: </div>
+                            <div class="col-4 text-right"> Delivery Date</div> 
+                        </div>
                     </div>
                 </div>
 

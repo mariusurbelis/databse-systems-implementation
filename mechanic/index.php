@@ -11,15 +11,15 @@
         }
 
         .dev {
-            border: solid 2px green;
+/*            border: solid 2px green;*/
         }
 
         .devr {
-            border: solid 2px red;
+/*            border: solid 2px red;*/
         }
 
         .devb {
-            border: solid 2px blue;
+/*            border: solid 2px blue;*/
         }
 
         .notes {
