@@ -27,7 +27,7 @@
         <div class="row">
 
             <div style="margin-top: 3em" class="col-8 offset-2 text-center">
-
+                                
                 <div class="row">
                     <div class="text-left mb-4 col-12">
                         <h1>Links To Screens</h1>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="dev row">
-                    <div class="dev col-4"><a href="executive-manager-orders.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Executive Manager Screen</button></a></div>
+                    <div class="dev col-4"><a href="executive-manager/order-info.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Executive Manager Screen</button></a></div>
                     <div class="dev col-4"><a href="mechanic/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Mechanic Screen</button></a></div>
                     <div class="dev col-4"><a href="client/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Client Screen</button></a></div>
                 </div>
@@ -57,8 +57,9 @@
                 </div>
 
                 <div class="dev row">
-                    <div class="dev col-6"><a href="branch.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Branch Management Form</button></a></div>
-                    <div class="dev col-6"><a href="supplier.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Supplier Management Form</button></a></div>
+                    <div class="dev col-4"><a href="branch.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Branch Management Form</button></a></div>
+                    <div class="dev col-4"><a href="supplier.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Supplier Management Form</button></a></div>
+                    <div class="dev col-4"><a href="service.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Service Form</button></a></div>
                 </div>
 
 

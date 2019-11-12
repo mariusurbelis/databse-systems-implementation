@@ -11,10 +11,9 @@ $result = mysqli_query($con,"SELECT * FROM Service WHERE Status = 'In Progress';
 
 while ($row = $result->fetch_assoc()) {
     find_vehicle_from_regnumber($row['RegNumber']);
-    echo $row['Notes']."<br>";  
+    echo 'Mechanic: ';
+    find_staff_from_staffid($row['StaffID']);
 }
-
-// TODO: Add staff FName & LName from Staff class. Access staff class from staffID FK in service class
 
 mysqli_close($con);
 ?>

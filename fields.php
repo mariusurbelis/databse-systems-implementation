@@ -7,7 +7,7 @@
     <style>
 
         .dev {
-                        border: solid 2px green;
+            border: solid 2px green;
         }
 
         .devr {
@@ -57,8 +57,8 @@
             </div>
 
             <div class="col-lg-2 col-4">             
-                <h3>Job</h3>
-                <?php describe("Job") ?>
+                <h3>Supplier</h3>
+                <?php describe("Supplier") ?>
             </div>
 
             <div class="col-lg-2 col-4">             
@@ -81,8 +81,8 @@
             </div>
 
             <div class="col-lg-2 col-4">             
-                <h3>Supplier</h3>
-                <?php describe("Supplier") ?>
+                <h3>Stock</h3>
+                <?php describe("Stock") ?>
             </div>
 
             <div class="col-lg-2 col-4">             
@@ -94,22 +94,30 @@
                 <h3>Supplier_PartType</h3>
                 <?php describe("Supplier_PartType") ?>
             </div>
+
         </div>
 
+        <div hidden class="pt-5 row">
 
+
+            <div class="col-lg-2 col-4">             
+                <h3>Stock</h3>
+                <?php describe("Stock") ?>
+            </div>
+
+        </div>
 
     </div>
 
-    </div>
 
 
 
-<!-- Usage of this file -->
-<?php // include 'simple-read.php';?>
-<!-- ------------------ -->
+    <!-- Usage of this file -->
+    <?php // include 'simple-read.php';?>
+    <!-- ------------------ -->
 
 
-<?php
+    <?php
 
     function describe($table){
 
@@ -132,7 +140,7 @@
 
     mysqli_close($con);
 }
-?>
+    ?>
 
 
 </body>
