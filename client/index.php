@@ -8,11 +8,11 @@
     <style>
 
         .dev {
-                        border: solid 2px green;
+               border: solid 2px green;
         }
 
         .devr {
-                        border: solid 2px red;
+               border: solid 2px red;
         }
 
         a {
@@ -29,7 +29,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div style="color: white; background-color: #6C7A89; height: 10vh" class="devr row align-items-center">
             <div class="col-4 dev h1 pl-5 text-left">ASHOME REPAIRS</div>
@@ -39,7 +38,6 @@
 
         <div hidden id="login-prompt" class="dev mt-5 row">
             <div class="devr mt-5 text-center col-10 offset-1">
-
                 <div class="row">
                     <div class="col-10 offset-1 text-center">
                         <p>Use <b>john</b> and <b>doe</b> as the login details</p>
@@ -48,39 +46,41 @@
                         <a onclick="login()" href="#">Login</a>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div style="height: 60vh" id="client-area" class="dev mt-5 row align-items-center">
             <div style=" color: white; background-color: #a3a3c2; height: 40vh" class="mt-5 text-center col-10 offset-1">
                 <div class="row">
-                    <div style="height: 40vh" class="dev col-4">
-                            <p>Select or Enter Service ID </p>
-
-                            <div class="dev col-4">
-                            <select class=" col-10 align-items-center" name = "serviceID">
+                    <div style="height: 40vh" class="dev col-3">
+                        <div style="background-color: gray "class=" row ">
+                            <div style=" padding-top: 5px; height: 5vh; font-size: 20px" class="col-10 ">Select or Enter Service ID </div>
+                        </div>
+                        <div style="padding-top: 30%" class=" col-10">
+                            <select style="height: 5vh; font-size: 15px" class=" col-12 align-items-center">
+                                
+                                <option value="00" disabled selected>Select Service ID</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
+
                             </select>
-                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="dev col-8">
-                        <div class=" row">
-                            <div class="col-4 text-left ">Service ID</div>
-                            <div class="col-4  text-center "> Status: </div>
-                            <div class="col-4 text-right"> Delivery Date</div> 
+                    <div class="dev col-9">
+                            <div style="background-color: gray; height: 5vh; padding-top: 5px; font-size: 20px" class="row">
+                            
+                                <div class="col-3 text-left"> Service ID: </div>
+                                <div class="col-2"> Status: </div>
+                                <div class="col-3 offset-1 text-right"> Delivery Date: </div> 
+
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
-
 </body>
 
 <script>

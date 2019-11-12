@@ -11,15 +11,15 @@
         }
 
         .dev {
-/*            border: solid 2px green;*/
+            /*            border: solid 2px green;*/
         }
 
         .devr {
-/*            border: solid 2px red;*/
+            /*            border: solid 2px red;*/
         }
 
         .devb {
-/*            border: solid 2px blue;*/
+            /*            border: solid 2px blue;*/
         }
 
         .notes {
@@ -48,15 +48,15 @@
 
                                 <div class="devr row">
                                     <div class="col-10">
-<!--                                        <h5 class="devb">Opel Astra 1.6 TD 2005</h5>-->
-<!--                                        <p class="devb notes">It very broke...</p>-->
+                                        <!--                                        <h5 class="devb">Opel Astra 1.6 TD 2005</h5>-->
+                                        <!--                                        <p class="devb notes">It very broke...</p>-->
                                         <?php include "cars-awaiting-repair.php"; ?>
                                     </div>
                                     <div class="col-2 dev">
                                         <a href="#">></a>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -67,16 +67,14 @@
 
 
                                 <div style="color: black;" id="txtHint"><b>Repairs info will be listed here...</b></div>
-                                
-                                
+
+
 
                                 <script>
                                     function getVehicles() {
                                         if (window.XMLHttpRequest) {
-                                            // code for IE7+, Firefox, Chrome, Opera, Safari
                                             xmlhttp = new XMLHttpRequest();
                                         } else {
-                                            // code for IE6, IE5
                                             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                                         }
                                         xmlhttp.onreadystatechange = function() {
@@ -86,10 +84,9 @@
                                         };
                                         xmlhttp.open("GET","getvehicle.php?passed="+ "lol" ,true);
                                         xmlhttp.send();
-
                                     }
                                 </script>
-                                
+
                                 <script>
                                     getVehicles();
                                 </script>
@@ -143,7 +140,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php print_search_parts(""); ?>
+                                                <!-- Get the parts to print -->
+                                                <script>
+                                                    fetch('https://jsonplaceholder.typicode.com/posts')
+                                                        .then(function (response) {
+                                                        return response.json();
+                                                    })
+                                                        .then(function (data) {
+                                                        console.log(data);
+                                                    });
+                                                </script>
                                             </tbody>
                                         </div>
                                     </table>
