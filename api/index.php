@@ -8,11 +8,18 @@ else
     if ($api_key != "ashome")
         die();
 
-$command = $_GET['command'];
+if (isset($_GET['command']))
+    $command = $_GET['command'];
+else
+    die();
 
 if ($command == "searchparts") {
-    $partquery = $_GET['part'];
-    search_parts($partquery);
+    if (isset($_GET['part'])) {
+        $partquery = $_GET['part'];
+        search_parts($partquery);
+    } else {
+        search_parts("");
+    }
 }
 
 function search_parts($partsearch) {
@@ -28,15 +35,12 @@ INNER JOIN PartType ON Stock.PartTypeID = PartType.ID
 WHERE Stock.BranchID='DD1'
 AND PartType.PartDetails LIKE '%" . $partsearch . "%';");
 
+    $rows = array();
+
     while ($row = $result->fetch_assoc()) {
-        echo json_encode(
-            array(
-                'Quantity'      =>  $row["Quantity"],
-                'ID'            =>  $row["ID"],
-                'PartDetails'   =>  $row["PartDetails"]
-            )
-        );
+        $rows[] = $row;
     }
+    echo json_encode($rows);
     mysqli_close($con);
 }
 

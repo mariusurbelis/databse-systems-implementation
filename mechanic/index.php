@@ -48,8 +48,6 @@
 
                                 <div class="devr row">
                                     <div class="col-10">
-                                        <!--                                        <h5 class="devb">Opel Astra 1.6 TD 2005</h5>-->
-                                        <!--                                        <p class="devb notes">It very broke...</p>-->
                                         <?php include "cars-awaiting-repair.php"; ?>
                                     </div>
                                     <div class="col-2 dev">
@@ -65,10 +63,7 @@
                             <div style="background-color: white; color: black; height: 40.7vh; font-size: 0.7em;" class="overflow-auto p-3 mt-5 col-10 offset-1">
                                 <?php //require 'cars-in-repair.php'; ?>
 
-
                                 <div style="color: black;" id="txtHint"><b>Repairs info will be listed here...</b></div>
-
-
 
                                 <script>
                                     function getVehicles() {
@@ -118,7 +113,7 @@
                                 <!-- Search form -->
                                 <!-- <form action="parts-search.php" method="get"> -->
                                 <input id="partsearch" name="partsearch" class="rounded-lg shadow form-control" type="text" placeholder="Search for parts" aria-label="Search">
-                                <input style="margin-top: 1em" class="btn btn-primary" onclick="loadsearch()" name="searchbutton" id="searchbutton" value="Submit" />
+                                <input style="margin-top: 1em" class="btn btn-primary" onclick='search()' name="searchbutton" id="searchbutton" value="Submit" />
                                 <!-- </form> -->
                             </div>
                         </div>
@@ -139,16 +134,26 @@
                                                     <th>Part Name</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="part-table">
                                                 <!-- Get the parts to print -->
                                                 <script>
-                                                    fetch('https://jsonplaceholder.typicode.com/posts')
-                                                        .then(function (response) {
-                                                        return response.json();
-                                                    })
-                                                        .then(function (data) {
-                                                        console.log(data);
-                                                    });
+
+                                                    function search(partQuery) {
+                                                        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=searchparts&part='+ document.getElementById("partsearch").value)
+                                                            .then(function (response) {
+                                                            return response.json();
+                                                        })
+                                                            .then(function (data) {
+                                                            console.log(data);
+                                                            document.getElementById("part-table").innerHTML = "";
+                                                            data.forEach((item) => {
+                                                                document.getElementById("part-table").innerHTML += '<tr>' +
+                                                                    '<td scope="row">' + item.Quantity + '</td>' +
+                                                                    '<td>' + item.ID + '</td>' +
+                                                                    '<td>' + item.PartDetails + '</td></tr>';
+                                                            });
+                                                        });
+                                                    }
                                                 </script>
                                             </tbody>
                                         </div>
