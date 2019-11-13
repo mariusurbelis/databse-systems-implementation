@@ -3,13 +3,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>TEAM 18</title>
-    
+
     <style>
-        
+
         a:hover {
             text-decoration: none;
         }
-    
+
     </style>
 
 </head>
@@ -27,7 +27,7 @@
         <div class="row">
 
             <div style="margin-top: 3em" class="col-8 offset-2 text-center">
-                                
+
                 <div class="row">
                     <div class="text-left mb-4 col-12">
                         <h1>Links To Screens</h1>
@@ -39,7 +39,7 @@
                     <div class="dev col-4"><a href="mechanic/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Mechanic Screen</button></a></div>
                     <div class="dev col-4"><a href="client/"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Client Screen</button></a></div>
                 </div>
-                
+
                 <hr>
 
                 <div class="pt-1 dev row">
@@ -47,7 +47,7 @@
                     <div class="dev col-4"><a href="vehicle.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Vehicle List</button></a></div>
                     <div class="dev col-4"><a href="fields.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">List of Fields</button></a></div>
                 </div>
-                
+
                 <hr>
 
                 <div class="mt-1 row">
@@ -71,10 +71,10 @@
 
                     <div class="col-6">
                         <h1>Tasks</h1>
-                        <p>- Create sample data and add it to the database<br>
-                        - Try reading the sample data from the database<br>
-                        - Create a real usage scenario<br>
-                        - Ensure the process of getting a car repaired is smooth from start to finish</p>
+                        <p>
+                            - Create a real usage scenario<br>
+                            - Ensure the process of getting a car repaired is smooth from start to finish
+                        </p>
                     </div>
                 </div>
 
