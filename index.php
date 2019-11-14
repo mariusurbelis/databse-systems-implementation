@@ -43,9 +43,9 @@
                 <hr>
 
                 <div class="pt-1 dev row">
-                    <div class="dev col-4"><a href="client.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Client List</button></a></div>
+                    <div class="dev col-4"><a href="branch-supervisor/view-client.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Client List</button></a></div>
                     <div class="dev col-4"><a href="vehicle.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Vehicle List</button></a></div>
-                    <div class="dev col-4"><a href="fields.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">List of Fields</button></a></div>
+                    <div class="dev col-4"><a href="fields.php"><button type="button" class="btn p-4 btn-info btn-lg btn-block">List of Fields</button></a></div>
                 </div>
 
                 <hr>
@@ -57,9 +57,10 @@
                 </div>
 
                 <div class="dev row">
-                    <div class="dev col-4"><a href="branch.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Branch Management Form</button></a></div>
-                    <div class="dev col-4"><a href="supplier.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Supplier Management Form</button></a></div>
-                    <div class="dev col-4"><a href="service.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Service Form</button></a></div>
+                    <div class="dev col-3"><a href="branch.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Branch Management Form</button></a></div>
+                    <div class="dev col-3"><a href="supplier.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Supplier Management Form</button></a></div>
+                    <div class="dev col-3"><a href="service.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Service Form</button></a></div>
+                    <div class="dev col-3"><a href="branch-supervisor/add-client.php"><button type="button" class="btn p-4 btn-secondary btn-lg btn-block">Branch Supervisor</button></a></div>
                 </div>
 
 

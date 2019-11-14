@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-include "db.php";
+include "../db.php";
 try{
     // Create the SQL Query
     $query = "INSERT INTO Service VALUES (" . 'NULL' . ',\'' .
@@ -18,7 +18,7 @@ try{
     echo $query;
     // Execute the query on the database
     $mysql->exec($query);
-    header("Location: add-data.php");
+    header("Location: ../service.php");
 } catch ( PDOException $e ) {
     // Any errors from the query are caught in this block
     echo $e->getMessage();

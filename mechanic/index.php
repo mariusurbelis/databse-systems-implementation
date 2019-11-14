@@ -11,15 +11,15 @@
         }
 
         .dev {
-            /*            border: solid 2px green;*/
+                        border: solid 2px green;
         }
 
         .devr {
-            /*            border: solid 2px red;*/
+                        border: solid 2px red;
         }
 
         .devb {
-            /*            border: solid 2px blue;*/
+                        border: solid 2px blue;
         }
 
         .notes {
@@ -94,9 +94,42 @@
                 </div>
 
 
-                <div hidden class="text-center row">
-                    <div class="col-6 h2">Mechanic Notes #1</div>
-                    <div class="col-6 h2">Mechanic Notes #2</div>
+                <div class="text-center row">
+                    <div class="devb col-12 h2">
+                        <div class="devr row">
+                            <div style="background-color: white; color: black;" class="dev rounded-lg mt-5 col-10 offset-1">
+                                     The wtf
+                                
+                                <div class="row">
+                                    <div class="dev col-2">ok col 2</div>
+                                    <div class="dev col-2">ok col 2</div>
+                                    <div class="dev col-6">
+                                    
+                                        <div class="dev row"><div class="col-12">ss</div></div>
+                                        <div class="devr row"><div class="col-12"></div>
+                                            <div class="dev col-6">ss</div>
+                                            <div class="dev col-6">ss</div>
+                                        
+                                            </div>
+                                            
+                                           
+                                        <div class="devr row"><div class="col-12">ss</div></div>
+                                        
+                                    </div>
+                                    <div class="devr col-1">ok col 1</div>
+                                    <div class="devb col-1">ok col 1</div>
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="dev col-6 offset-4">ok col 6</div>
+                                    <div class="devr col-1">ok col 1</div>
+                                    <div class="devb col-1">ok col 1</div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -107,14 +140,13 @@
 
                     <div style="background-color: #bbbbbb; height: 90vh" class="rounded-lg mt-5 col-10 offset-1">
 
-                        <div class="mt-5 mb-5 row">
+                        <div class="mt-5 mb-5 row align-items-center">
 
-                            <div class="col-10 offset-1">
-                                <!-- Search form -->
-                                <!-- <form action="parts-search.php" method="get"> -->
+                            <div class="col-8 offset-1">
                                 <input id="partsearch" name="partsearch" class="rounded-lg shadow form-control" type="text" placeholder="Search for parts" aria-label="Search">
-                                <input style="margin-top: 1em" class="btn btn-primary" onclick='search()' name="searchbutton" id="searchbutton" value="Submit" />
-                                <!-- </form> -->
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-primary" onclick='search()' name="searchbutton" id="searchbutton" type="button">Submit</button>
                             </div>
                         </div>
 

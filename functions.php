@@ -81,3 +81,27 @@ function print_supplier_info()
     }
     mysqli_close($con);
 }
+
+function display_clients()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3u18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $result = mysqli_query($con, "SELECT * FROM Client;");
+
+    while ($row = $result->fetch_assoc()) {
+        echo
+            '<tr>
+                  <td scope="row">' . $row["ID"] . '</td>
+                  <td>' . $row["FName"] . '</td>
+                  <td> ' . $row["LName"] . '</td>
+                  <td> ' . $row["ContactNumber"] . '</td>
+                  <td> ' . $row["Address"] . '</td>
+                  <td> ' . $row["Email"] . '</td>
+                </tr>';
+    }
+    mysqli_close($con);
+}
