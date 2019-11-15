@@ -56,12 +56,30 @@ if ($command == "searchparts") {
     } else {
         die();
     }
-} else if ($command == "awaitingrepair") {
+} else if ($command == "mechanicdata") {
     if (isset($_GET['branchid'])) {
-        get_awaiting_repair();
+        mehcanic_data();
     } else {
         die();
     }
+}
+
+function mehcanic_data() {
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3extra18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $result = mysqli_query($con, "SELECT * FROM servicedetails WHERE BranchID='" . $_GET['branchid'] . "';");
+
+    $rows = array();
+
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    echo json_encode($rows);
+    mysqli_close($con);
 }
 
 function search_parts($partsearch) {

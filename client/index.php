@@ -37,69 +37,49 @@
         </div>
 
         <div style="height: 60vh" id="client-area" class="dev mt-5 row align-items-center">
-            <div style=" color: white; background-color: #a3a3c2; height: 40vh" class="mt-5 text-center col-12 ">
+            <div style=" color: white; background-color: #6C7A89; height: 40vh" class="mt-5 text-center col-12 ">
+                
+                <div  class="row">
+                 
+                    <div style="background-color: gray" class="col-9 offset-3 dev">
+                        <div class="row">
+                            <div class="col-2 dev">ID</div>
+                            <div class="col-4 devr">Status</div>
+                            <div class="col-6 dev">Expected Date</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div style="height: 40vh" class="dev col-3 ">
                         
-                        <div style="background-color: gray "class=" row ">
-                            <div style=" font-size: 20px" class="dev col-10 ">Select or Enter Service ID </div>
+                        <div class=" row ">
+                            <div style=" font-size: 2.5em" class="dev col-12 ">Enter Service ID </div>
                         </div>
 
                         <div style="padding-top: 20%;  " class="row">       
                             <input id="serviceid" class="rounded-lg offset-2 " type="text"  placeholder=" Enter Service ID Here"> 
                         </div>
 
-                        <div class="row" style="height: 3vh"></div>
-
-                        <div class="row">
+                        <div class="row mt-3">
                             <button class="btn btn-primary offset-2" onclick="getService()" id="button" type="button">Submit</button>        
                         </div> 
                     </div>
 
                     <div class="dev col-9">
-                        <div style="background-color: gray; font-size: 20px" class="row text-center">
-                                <div class="dev col-2">
-                                    <div class="row">
-                                        <div class="col-12" style="font-size: 1em">
-                                            ID
-                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div id="showID" class="col-12" style="font-size: 1.5em">
-                                            
-                                         </div>
-                                    </div>     
+                        <div style="background-color: gray; font-size: 2em" class="row text-center">
+                                <div id="showID" class="dev col-2">
+                                    
                                 </div>
                                      
-                                <div class="col-4">                                           
-                                     <div class="row">
-                                        <div class="col-12" style="font-size: 1em">
-                                            Status
-                                         </div>
-                                    </div>                              
-                                    <div class="row">
-                                        <div id="showStatus" class="col-12" style="font-size: 1.5em">
-                                            
-                                         </div>
-                                    </div>    
+                                <div id="showStatus" class="col-4">                                           
+                                     
                                 </div>
 
-                                <div class="col-6 "> 
-                                    <div class="row">
-                                        <div class="col-12" style="font-size: 1em">
-                                            Date
-                                         </div>
-                                    </div>                              
-                                    <div class="row">
-                                        <div id="showDate" class="col-12" style="font-size: 1.5em">
-                                            
-                                         </div>
-                                    </div>      
+                                <div id="showDate" class="col-6 "> 
+
                                 </div>
                         </div>
-
-                          
 
                             <script>
                                 function getService() 
