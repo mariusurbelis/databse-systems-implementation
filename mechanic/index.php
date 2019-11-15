@@ -11,15 +11,15 @@
         }
 
         .dev {
-                        border: solid 2px green;
+            border: solid 2px green;
         }
 
         .devr {
-                        border: solid 2px red;
+            border: solid 2px red;
         }
 
         .devb {
-                        border: solid 2px blue;
+            border: solid 2px blue;
         }
 
         .notes {
@@ -93,59 +93,72 @@
 
                 </div>
 
+                <div class="row">
 
-                <div class="text-center row">
-                    <div class="devb col-12 h2">
-                        <div class="devr row">
-                            <div style="background-color: white; color: black;" class="dev rounded-lg mt-5 col-10 offset-1">
-                                     The wtf
-                                
-                                <div class="row">
-                                    <div class="dev col-2">ok col 2</div>
-                                    <div class="dev col-2">ok col 2</div>
-                                    <div class="dev col-6">
-                                    
-                                        <div class="dev row"><div class="col-12">ss</div></div>
-                                        <div class="devr row"><div class="col-12"></div>
-                                            <div class="dev col-6">ss</div>
-                                            <div class="dev col-6">ss</div>
-                                        
-                                            </div>
-                                            
-                                           
-                                        <div class="devr row"><div class="col-12">ss</div></div>
-                                        
-                                    </div>
-                                    <div class="devr col-1">ok col 1</div>
-                                    <div class="devb col-1">ok col 1</div>
-                                </div>
-                                
-                                <div class="row">
-                                    
-                                    <div class="dev col-6 offset-4">ok col 6</div>
-                                    <div class="devr col-1">ok col 1</div>
-                                    <div class="devb col-1">ok col 1</div>
-                                </div>
-                                
+                    <div style="background-color: white; color: black;" class= "rounded lg text-left mt-5 ml-5 mr-5 mb-0 p-3 h4 col-11">Mechanic Notes
+
+                        <div class="row ml-0.5 mr-0.5">
+                            <div class="col-6">
+
+                                <script>
+                                    fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=getnotes&serviceid=' + 3)
+                                        .then(function(response) {
+                                        return response.text().then(function(text) {
+                                            document.getElementById("mechanicnotes2").innerHTML = text
+                                        });
+                                    });
+                                </script>
+                                <!--
+<div class="row">
+<div class="dev col-12">ss</div>
+</div>
+-->
                             </div>
+
+                            <div id="mechanicnotes2" class="col-6">ss
+                                <!--
+<div class="row">
+<div class="dev col-12">ss</div>
+</div>
+-->
+                            </div> 
+
                         </div>
+
+
                     </div>
+
                 </div>
 
+                <!--
+<div class="row">
+<div style="background-color: white; color: black;" class= "rounded lg text-left mt-5 ml-5 mr-5 mb-0 p-3 h4 col-11">
+<div class="dev col-5">ss</div> 
+<div class="dev col-5">ss</div> 
+
+</div>
+</div>
+-->
+
             </div>
+
+
+
+
+
+
+
 
             <div class="dev mb-0 col-4 h4">
 
                 <div class="row">
 
                     <div style="background-color: #bbbbbb; height: 90vh" class="rounded-lg mt-5 col-10 offset-1">
-
                         <div class="mt-5 mb-5 row align-items-center">
-
-                            <div class="col-8 offset-1">
+                            <div class="col-8 offset-1">    
                                 <input id="partsearch" name="partsearch" class="rounded-lg shadow form-control" type="text" placeholder="Search for parts" aria-label="Search">
                             </div>
-                            <div class="col-1">
+                            <div class="col-2">
                                 <button class="btn btn-primary" onclick='search()' name="searchbutton" id="searchbutton" type="button">Submit</button>
                             </div>
                         </div>
@@ -181,7 +194,7 @@
                                                             data.forEach((item) => {
                                                                 document.getElementById("part-table").innerHTML += '<tr>' +
                                                                     '<td scope="row">' + item.Quantity + '</td>' +
-                                                                    '<td>' + item.ID + '</td>' +
+                                                                    '<td>' + item.PartTypeID + '</td>' +
                                                                     '<td>' + item.PartDetails + '</td></tr>';
                                                             });
                                                         });

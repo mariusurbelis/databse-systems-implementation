@@ -74,7 +74,9 @@
                         <h1>Tasks</h1>
                         <p>
                             - Create a real usage scenario<br>
-                            - Ensure the process of getting a car repaired is smooth from start to finish
+                            - Ensure the process of getting a car repaired is smooth from start to finish<br>
+                            - make sure all functions go through API (tidy up)<br>
+                            - 
                         </p>
                     </div>
                 </div>

@@ -2,23 +2,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.nav-item {
+.nav-link {
+    font-size: 1.2em;
+}
+
+.nav-link {
     color: #B1A296;
-    font-size: 2em;
-    text-align: right;
-    margin-right: 1em;
 }
-
-a:hover {
-    text-decoration: none;
-    font-size: 105%;
-    font-weight: bold;
-    text-overflow: inherit;
-}
-
-.dev {
-    /*
-    border: 2px solid red;
-    background-color: aqua; 
-    */
+.nav-link:hover {
+    color: #938E94;
 }
