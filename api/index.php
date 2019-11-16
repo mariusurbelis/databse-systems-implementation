@@ -62,6 +62,30 @@ if ($command == "searchparts") {
     } else {
         die();
     }
+} else if ($command == "repairdone") {
+    if (isset($_GET['serviceid'])) {
+        repair_done();
+    } else {
+        die();
+    }
+} else if ($command == "delayrepair") {
+    if (isset($_GET['serviceid'])) {
+        delay_repair();
+    } else {
+        die();
+    }
+} else if ($command == "usepart") {
+    if (isset($_GET['partid'])) {
+        use_part();
+    } else {
+        die();
+    }
+} else if ($command == "orderpart") {
+    if (isset($_GET['partid'])) {
+        order_part();
+    } else {
+        die();
+    }
 }
 
 function mehcanic_data() {
@@ -231,3 +255,69 @@ function set_client()
 
     mysqli_close($con);
 }
+
+function repair_done()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3extra18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    mysqli_query($con, 'CALL SetServiceStatusCompleted(' . $_GET['serviceid'] . ');');
+    mysqli_close($con);
+
+}
+
+function delay_repair()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3extra18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    mysqli_query($con, 'CALL SetServiceStatusDelayed(' . $_GET['serviceid'] . ');');
+
+    mysqli_close($con);
+}
+
+function use_part()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3u18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $partid = $_GET['partid'];
+
+    mysqli_query($con, 
+                 'UPDATE Stock 
+        SET
+        Quantity = IF(Quantity > 0, Quantity - 1, 0)
+        WHERE PartTypeID = ' . $partid . ';');
+    mysqli_close($con);
+}
+
+/*function order_part()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3u18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $json = $_GET['partdata'];
+
+    $data = json_decode($json);
+
+    mysqli_query($con, 'INSERT INTO PartRequest values(
+        NULL,
+        ' . 5 . ',
+        ' . 0 . ',
+        " 2019-03-04 12:46:46 ",
+        "' . $data->{'BranchID'} . '",
+        "' . $data->{'Email'} . '"  
+    );');
+}*/

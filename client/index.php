@@ -38,9 +38,8 @@
 
         <div style="height: 60vh" id="client-area" class="dev mt-5 row align-items-center">
             <div style=" color: white; background-color: #6C7A89; height: 40vh" class="mt-5 text-center col-12 ">
-                
                 <div  class="row">
-                 
+
                     <div style="background-color: gray" class="col-9 offset-3 dev">
                         <div class="row">
                             <div class="col-2 dev">ID</div>
@@ -52,7 +51,7 @@
 
                 <div class="row">
                     <div style="height: 40vh" class="dev col-3 ">
-                        
+
                         <div class=" row ">
                             <div style=" font-size: 2.5em" class="dev col-12 ">Enter Service ID </div>
                         </div>
@@ -68,57 +67,78 @@
 
                     <div class="dev col-9">
                         <div style="background-color: gray; font-size: 2em" class="row text-center">
-                                <div id="showID" class="dev col-2">
-                                    
-                                </div>
-                                     
-                                <div id="showStatus" class="col-4">                                           
-                                     
-                                </div>
+                            <div id="showID" class="dev col-2">
 
-                                <div id="showDate" class="col-6 "> 
+                            </div>
 
-                                </div>
+                            <div id="showStatus" class="col-4">                                           
+
+                            </div>
+
+                            <div id="showDate" class="col-6 "> 
+
+                            </div>
                         </div>
 
-                            <script>
-                                function getService() 
+                        <div class="devr row align-items-center">
+                            <div id="myCanvas" >  
+
+                                kjhgfds
+
+                            </div>
+                        </div>
+
+                        <script>
+                            function getService() 
+                            {
+                                //for old browsers IE 5 and IE 6
+                                if (window.XMLHttpRequest) 
                                 {
-                                    //for old browsers IE 5 and IE 6
-                                    if (window.XMLHttpRequest) 
-                                    {
-                                        // code for modern browsers
-                                        xmlhttp = new XMLHttpRequest()
-                                    } 
-                                    else 
-                                    {
-                                        // code for old IE browsers
-                                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
-                                    }  
-                                    xmlhttp.onreadystatechange = function() {
-                                        if (this.readyState == 4 && this.status == 200) {
+                                    // code for modern browsers
+                                    xmlhttp = new XMLHttpRequest()
+                                } 
+                                else 
+                                {
+                                    // code for old IE browsers
+                                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+                                }  
+                                xmlhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
 
-                                            serviceData = JSON.parse(this.responseText)
-                                            
-                                            // Usage: serviceData.<field> (i.e. serviceData.RegNumber)
-                                            // Get elements' text: document.getElementById("<YOUR_ID_HERE>").innerHTML
-                                            // Example: document.getElementById("<YOUR_ID_HERE>").innerHTML = serviceData.ID
+                                        serviceData = JSON.parse(this.responseText)
 
-                                            document.getElementById("showID").innerHTML = serviceData.ID
-                                            document.getElementById("showStatus").innerHTML = serviceData.Status;
-                                            document.getElementById("showDate").innerHTML = serviceData.ServiceActualEnd;
+                                        // Usage: serviceData.<field> (i.e. serviceData.RegNumber)
+                                        // Get elements' text: document.getElementById("<YOUR_ID_HERE>").innerHTML
+                                        // Example: document.getElementById("<YOUR_ID_HERE>").innerHTML = serviceData.ID
 
+                                        document.getElementById("showID").innerHTML = serviceData.ID
+                                        document.getElementById("showStatus").innerHTML = serviceData.Status;
+                                        document.getElementById("showDate").innerHTML = serviceData.ServiceActualEnd;
 
-                                            
+                                        if (serviceData.Status == 'Complete') 
+                                        {
+                                            document.getElementById("myCanvas").innerHTML = "<img src=\"complete.PNG\" width=\"50%\">";
                                         }
-                                    };
+                                        else if (serviceData.Status == 'Incomplete')
+                                        {
+                                            document.getElementById("myCanvas").innerHTML = "<img src=\"start.png\" width=\"50%\">";
+                                        }
+                                        else if(serviceData.Status == 'Delayed')
+                                        {
+                                            document.getElementById("myCanvas").innerHTML = "<img src=\"delayed.PNG\" width=\"50%\">";               
+                                        }
+                                        else if (serviceData.Status == 'In Progress')
+                                        {
+                                            document.getElementById("myCanvas").innerHTML = "<img src=\"start.PNG\" width=\"50%\">"; 
+                                        }
+                                    }
+                                };
 
-                                    xmlhttp.open("GET","https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/index.php?api_key=ashome&command=servicesearch&serviceid=" + document.getElementById("serviceid").value,true,) 
-                                    xmlhttp.send()                       
-                                }
-                            </script>
+                                xmlhttp.open("GET","https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/index.php?api_key=ashome&command=servicesearch&serviceid=" + document.getElementById("serviceid").value,true,) 
+                                xmlhttp.send()                       
+                            }
+                        </script>
 
-                        </div>
                     </div>
                 </div>
             </div>

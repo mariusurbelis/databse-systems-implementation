@@ -61,7 +61,7 @@
 
                 <div class="row">
 
-                    <div id="notes-tab" style="background-color: white; color: black;" class="rounded-lg text-left mt-5 ml-5 mr-5 pb-2 p-3 pt-2 h4 col-11">                        
+                    <div id="notes-tab" style="background-color: white; color: black;" class="rounded-lg text-left mt-5 ml-5 mr-5 pb-2 p-3 pt-2 h4 col-11">
                         <!-- Notes will be here -->
                     </div>
                 </div>
@@ -74,7 +74,7 @@
 
                     <div style="background-color: #bbbbbb; height: 90vh" class="rounded-lg mt-5 col-10 offset-1">
                         <div class="mt-5 mb-5 row align-items-center">
-                            <div class="col-8 offset-1">    
+                            <div class="col-8 offset-1">
                                 <input id="partsearch" name="partsearch" class="rounded-lg shadow form-control" type="text" placeholder="Search for parts" aria-label="Search">
                             </div>
                             <div class="col-2">
@@ -89,7 +89,7 @@
 
                                     <p id="searchtext"></p>
 
-                                    <table class="table table-striped">                     
+                                    <table class="table table-striped">
                                         <div class="table responsive">
                                             <thead>
                                                 <tr>
@@ -102,13 +102,12 @@
                                             <tbody id="part-table">
                                                 <!-- Get the parts to print -->
                                                 <script>
-
                                                     function search(partQuery) {
-                                                        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=searchparts&part='+ document.getElementById("partsearch").value)
-                                                            .then(function (response) {
+                                                        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=searchparts&part=' + document.getElementById("partsearch").value)
+                                                            .then(function(response) {
                                                             return response.json();
                                                         })
-                                                            .then(function (data) {
+                                                            .then(function(data) {
                                                             console.log(data);
                                                             document.getElementById("part-table").innerHTML = "";
                                                             data.forEach((item) => {
@@ -116,7 +115,7 @@
                                                                     '<td scope="row">' + item.Quantity + '</td>' +
                                                                     '<td>' + item.PartTypeID + '</td>' +
                                                                     '<td>' + item.PartDetails + '</td>' +
-                                                                    '<td><button onclick="usePart(' + item.PartTypeID + ')" style="color: red" class="btn">Use</button><button style="color: green" class="btn">Order</button></td></tr>';
+                                                                    '<td><button onclick="usePart(' + item.PartTypeID + ')" style="color: red" class="btn">Use</button><button onclick="orderPart(' + item.PartTypeID + ')" style="color: green" class="btn">Order</button></td></tr>';
                                                             });
                                                         });
                                                     }
@@ -147,24 +146,26 @@
 </body>
 
 <script>
-
     function loadData(branchID) {
-        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=mechanicdata&branchid='+ branchID)
-            .then(function (response) {
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=mechanicdata&branchid=' + branchID)
+            .then(function(response) {
             return response.json();
         })
-            .then(function (data) {
+            .then(function(data) {
             console.log(data);
             //document.getElementById("part-table").innerHTML = "";
             data.forEach((item) => {
                 if (item.Status === "Incomplete") {
+                    document.getElementById("cars-tab").innerHTML = ""
                     document.getElementById("cars-tab").innerHTML += '<div class="row align-items-center"><div class="col-9"><b>' + item.Make + " " + item.Model + '</b><br>' +
                         item.Notes + '</div><div class="col-2">generate buttons for each mechanic???</div></div><hr>'
                 } else if (item.Status === "In Progress") {
+                    document.getElementById("repairs-tab").innerHTML = ""
                     document.getElementById("repairs-tab").innerHTML += '<div class="row align-items-center"><div class="col-7"><span style="font-size: 1em">' + item.Make + " " + item.Model + '</span><br><span style="font-size: 0.75em">Mechanic: ' + item.StaffFname + " " + item.StaffLname + '</span></div><div class="col-2"><button onclick="repairDone(' + item.ID + ')" class="btn btn-success">Done</button></div><div class="col-2"><button onclick="delayRepair(' + item.ID + ')" class="btn btn-info">Delay</button></div></div><hr>'
 
+                    document.getElementById("notes-tab").innerHTML = ""
                     document.getElementById("notes-tab").innerHTML +=
-                        '<div class="row align-items-center"><div style="font-size: 0.6em" class="col-2">' + item.Make + " " + item.Model + '</div><div class="col-10"><textarea class="form-control" id="notes-'+ item.ID +'"></textarea></div></div>'
+                        '<div class="mb-3 row align-items-center"><div style="font-size: 0.6em" class="col-2">' + item.Make + " " + item.Model + '</div><div class="col-10"><textarea class="form-control" id="notes-' + item.ID + '"></textarea></div></div>'
                     document.getElementById("notes-" + item.ID).innerHTML = item.Notes
                 }
             });
@@ -172,20 +173,37 @@
     }
 
     function usePart(partID) {
-        alert("Part ID is " + partID + ". This part will have its quantity deduced by one.");
+        //alert("Part ID is " + partID + ". This part will have its quantity deduced by one.");
+        xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=usepart&partid=' + partID, true);
+        xmlhttp.send();
     }
 
+    /*function orderPart(partID) {
+        alert("Part ID is " + partID + ". This part will be ordered.");
+        var obj = {
+
+            }
+
+        xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=orderpart&partdata=' + obj, true);
+        xmlhttp.send();
+    }*/
+
     function repairDone(serviceID) {
-        alert("Service ID is " + serviceID + ". This service will have its status set to done.");
+        //alert("Service ID is " + serviceID + ". This service will have its status set to done.");
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=repairdone&serviceid=' + serviceID)
+        loadData(document.getElementById("branchSelect").value)
     }
 
     function delayRepair(serviceID) {
-        alert("Service ID is " + serviceID + ". This service will have its status set to delayed.");
+        //alert("Service ID is " + serviceID + ". This service will have its status set to delayed.");
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=delayrepair&serviceid=' + serviceID)
+        loadData(document.getElementById("branchSelect").value)
     }
 
     function enterPage() {
         if (document.getElementById("branchSelect").value === "") {
             loadData("DUN55412")
+            document.getElementById("branchSelect").value = "DUN55412"
             document.getElementById("entrance").hidden = true
             document.getElementById("main-content").hidden = false
         } else {
@@ -194,5 +212,4 @@
             document.getElementById("main-content").hidden = false
         }
     }
-
 </script>
