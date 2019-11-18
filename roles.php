@@ -1,6 +1,6 @@
 <?php
     const CLIENT = 0;
     const MECHANIC = 1;
-    const SUPERVISOR = 2;
-    const EXECMANAGER = 3;
+    const BRANCH_SUPERVISOR = 2;
+    const EXECUTIVE_MANAGER = 3;
 ?>

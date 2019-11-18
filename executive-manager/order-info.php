@@ -5,10 +5,14 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../styles.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="../styles.css">
 
         <title>Executive Manager</title>
-
-        <script src="insert-product-request.js"></script>
 
     </head>
 
@@ -19,25 +23,7 @@
             <div class="row">
 
 
-                <div style="background: #5D5C61; height: 100vh;" class="col-2 text-center sidebar">
-                    <b>
-                        <p style="color: #938E94; font-size: 3em; margin-top: 0.5em">Executive Manager</p>
-                    </b>
-                    &nbsp;
-
-                    <a href="">
-                        <p class="nav-item"><b>Order</b></p>
-                    </a>
-                    <a href="branch-info.php">
-                        <p class="nav-item">Branch Info</p>
-                    </a>
-                    <a href="supplier-info.php">
-                        <p class="nav-item">Supplier Info</p>
-                    </a>
-                    <a href="">
-                        <p class="nav-item">Sales Trends</p>
-                    </a>
-                </div>
+                <?php include "sidebar.html" ?>
 
                 <div class="col-10 content">
                     <div class="row">
@@ -51,11 +37,11 @@
                                 <div class="table-responsive">
                                     <thead>
                                         <tr>
-                                            <th>Part Request ID</th>
                                             <th>BranchID</th>
                                             <th>Part Details</th>
                                             <th>Quantity</th>
                                             <th>PartTypeID</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,8 +60,6 @@
 
 
             </div>
-
-        </div>
 
         </div>
 

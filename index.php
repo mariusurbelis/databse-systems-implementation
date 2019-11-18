@@ -76,7 +76,12 @@
                             - Create a real usage scenario<br>
                             - Ensure the process of getting a car repaired is smooth from start to finish<br>
                             - make sure all functions go through API (tidy up)<br>
-                            - 
+                            - last service screens (edit, delete)<br>
+                            - parts use/order<br>
+                            - mechanic notes saving<br>
+                            - create landing screen<br>
+                            - executive manager screen
+
                         </p>
                     </div>
                 </div>

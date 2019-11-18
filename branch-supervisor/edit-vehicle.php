@@ -31,7 +31,7 @@
                 <div class="col-10 content">
                     <div class="row">
 
-                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-4 offset-1">Client - Edit</div>
+                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-4 offset-1">Vehicle - Edit</div>
                     </div>
 
                     <div class="row mt-5">
@@ -39,8 +39,8 @@
 
                             <div class="row">
                                 <div class="col-3">
-                                    <p>Please Enter ID of Client to be Edited: <input placeholder="ID" type="text" id="ID"></p>
-                                    <button style="margin-top: 1em" class="btn btn-primary" onclick="sendClientData()" id="submit" type="button">Submit</button>
+                                    <p>Please Enter Registration Number of Vehicle to be Edited: <input placeholder="Reg Number" type="text" id="RegNumber"></p>
+                                    <button style="margin-top: 1em" class="btn btn-primary" onclick="sendVehicleData()" id="submit" type="button">Submit</button>
                                 </div>
                             </div>
 
@@ -53,38 +53,39 @@
                                         <div class="table-responsive">
                                             <tbody>
                                                 <tr>
-                                                    <td>Forename: </td>
-                                                    <td><input placeholder="Forename" type="text" id="FName"></td>
+                                                    <td>Registration Number: </td>
+                                                    <td><input placeholder="Reg Number" type="text" id="RegNumber"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Surname: </td>
-                                                    <td><input placeholder="Surname" type="text" id="LName"></td>
+                                                    <td>Make: </td>
+                                                    <td><input placeholder="Make" type="text" id="Make"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Contact Number: </td>
-                                                    <td><input placeholder="Contact Number" type="text" id="ContactNumber" width="150%"></td>
+                                                    <td>Mileage: </td>
+                                                    <td><input placeholder="Mileage" type="text" id="Mileage"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Address: </td>
-                                                    <td><input placeholder="Address" type="text" id="Address"></td>
+                                                    <td>Model: </td>
+                                                    <td><input placeholder="Model" type="text" id="Model" width="150%"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Email: </td>
-                                                    <td><input placeholder="Email" type="text" id="Email"></td>
+                                                    <td>ClientID: </td>
+                                                    <td><input placeholder="ClientID" type="text" id="ClientID"></td>
                                                 </tr>
+                                                
 
                                             </tbody>
                                         </div>
                                     </table>
 
-                                    <button style="margin-top: 1em" class="btn btn-primary" onclick="saveDataToDB()" id="submit" type="button">Submit</button>
+                                    <button style="margin-top: 1em" class="btn btn-primary" onclick="saveVehicleDataToDB()" id="submit" type="button">Submit</button>
 
                                 </div>
                             </div>
 
                             <script>
-                                function sendClientData() {
-                                    fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=getclient&clientid=' + document.getElementById("ID").value)
+                                function sendVehicleData() {
+                                    fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=getvehicle&regnumber=' + document.getElementById("RegNumber").value)
                                         .then(function(response) {
                                         return response.json();
                                     })
@@ -93,35 +94,31 @@
                                         document.getElementById("edit-data").hidden = false;
 
                                         data.forEach((item) => {
-                                            // Access the retrieved client data by item.<field>
-                                            document.getElementById("FName").value = item.FName
-                                            document.getElementById("LName").value = item.LName
-                                            document.getElementById("ContactNumber").value = item.ContactNumber
-                                            document.getElementById("Address").value = item.Address
-                                            document.getElementById("Email").value = item.Email
+                                            // Access the retrieved vehicledata by item.<field>
+                                            document.getElementById("RegNumber").value = item.RegNumber
+                                            document.getElementById("Make").value = item.Make
+                                            document.getElementById("Model").value = item.Model
+                                            document.getElementById("Mileage").value = item.Mileage
+                                            document.getElementById("ClientID").value = item.ClientID
                                         });
                                     });
                                 }
 
-                                function clearClientInputFields() {
-                                    document.getElementById("ID").value = "";
-                                    document.getElementById("FName").value = "";
-                                    document.getElementById("LName").value = "";
-                                    document.getElementById("ContactNumber").value = "";
-                                    document.getElementById("Address").value = "";
-                                    document.getElementById("Email").value = "";
+                                function clearVehicleInputFields() {
+                                    document.getElementById("RegNumber").value = "";
+                                    document.getElementById("Make").value = "";
+                                    document.getElementById("Model").value = "";
+                                    document.getElementById("Mileage").value = "";
+                                    document.getElementById("ClientID").value = ""; 
                                 }
 
-                                function saveDataToDB() 
-                                {
-                                    var obj = 
-                                    {
-                                        'ID': document.getElementById("ID").value,
-                                        'FName': document.getElementById("FName").value,
-                                        'LName': document.getElementById("LName").value,
-                                        'ContactNumber': document.getElementById("ContactNumber").value,
-                                        'Address': document.getElementById("Address").value,
-                                        'Email': document.getElementById("Email").value,
+                                function saveVehicleDataToDB() {
+                                    var obj = {
+                                        'RegNumber': document.getElementById("RegNumber").value,
+                                        'Mileage': document.getElementById("Mileage").value,
+                                        'Model': document.getElementById("Model").value,
+                                        'Make': document.getElementById("Make").value,
+                                        'ClientID': document.getElementById("ClientID").value,
                                     }
 
                                     if (window.XMLHttpRequest) {
@@ -132,11 +129,11 @@
                                     xmlhttp.onreadystatechange = function() {
                                         if (this.readyState == 4 && this.status == 200) {
                                             // document.write(this.responseText)
-                                            clearInputFields()
+                                            clearVehicleInputFields();
                                         }
                                     };
 
-                                    xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=editclientset&clientdata=' + JSON.stringify(obj), true);
+                                    xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=editvehicleset&vehicledata=' + JSON.stringify(obj), true);
                                     xmlhttp.send();
                                 }
                             </script>

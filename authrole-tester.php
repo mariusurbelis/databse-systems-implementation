@@ -3,9 +3,8 @@
     include 'session.php';
     include 'authrole.php';
 
-    $s1 = new Session('MECHANIC');
-
-    if ($authRole('CLIENT', $s1->getSessionRole())) {
+    if ($authRole('CLIENT', $session_role)) {
         echo "authenticated!";
     }
+
 ?>

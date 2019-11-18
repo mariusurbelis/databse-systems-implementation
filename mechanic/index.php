@@ -4,6 +4,10 @@
 
     <title>Mechanic Screen</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <style>
         body {
             background-color: #303030;
@@ -31,7 +35,7 @@
 
 <?php require '../functions.php' ?>
 
-<body>
+<body onload="enterPage()">
 
     <div hidden id="main-content" class="container-fluid">
 
@@ -61,7 +65,7 @@
 
                 <div class="row">
 
-                    <div id="notes-tab" style="background-color: white; color: black;" class="rounded-lg text-left mt-5 ml-5 mr-5 pb-2 p-3 pt-2 h4 col-11">
+                    <div id="notes-tab" style="height: 40vh; background-color: white; margin-left: 2.5em; color: black;" class="text-left overflow-auto mt-5 pb-2 p-3 pt-2 h4 col-11">
                         <!-- Notes will be here -->
                     </div>
                 </div>
@@ -74,18 +78,18 @@
 
                     <div style="background-color: #bbbbbb; height: 90vh" class="rounded-lg mt-5 col-10 offset-1">
                         <div class="mt-5 mb-5 row align-items-center">
-                            <div class="col-8 offset-1">
+                            <div class="col-7 offset-1">
                                 <input id="partsearch" name="partsearch" class="rounded-lg shadow form-control" type="text" placeholder="Search for parts" aria-label="Search">
                             </div>
-                            <div class="col-2">
-                                <button class="btn btn-primary" onclick='search()' name="searchbutton" id="searchbutton" type="button">Submit</button>
+                            <div class="col-3">
+                                <button style="width: 105%;" class="btn btn-primary" onclick='search()' name="searchbutton" id="searchbutton" type="button">Submit</button>
                             </div>
                         </div>
 
                         <div style="font-size: 0.7em;" class="row">
 
                             <div class="col-12">
-                                <div style="background-color: white; color: black; height: 60vh;" class="overflow-auto pt-2 pb-2 rounded-lg shadow col-10 offset-1">
+                                <div style="background-color: white; color: black; height: 72.7vh;" class="overflow-auto pt-2 pb-2 rounded-lg shadow col-10 offset-1">
 
                                     <p id="searchtext"></p>
 
@@ -147,25 +151,67 @@
 
 <script>
     function loadData(branchID) {
+        var mechanics = []
+
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=getbranchstaff&branchid=' + branchID)
+            .then(function(response) {
+            return response.json();
+        })
+            .then(function(data) {
+            //            console.log(data);
+
+            //var 
+
+            data.forEach((mechanic) => {
+                //document.write(mechanic.FName + " " + mechanic.LName)
+                mechanics.push({ id: mechanic.ID, fname: mechanic.FName, lname: mechanic.LName })
+            });
+        });
+
+
         fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=mechanicdata&branchid=' + branchID)
             .then(function(response) {
             return response.json();
         })
             .then(function(data) {
-            console.log(data);
-            //document.getElementById("part-table").innerHTML = "";
-            data.forEach((item) => {
-                if (item.Status === "Incomplete") {
-                    document.getElementById("cars-tab").innerHTML = ""
-                    document.getElementById("cars-tab").innerHTML += '<div class="row align-items-center"><div class="col-9"><b>' + item.Make + " " + item.Model + '</b><br>' +
-                        item.Notes + '</div><div class="col-2">generate buttons for each mechanic???</div></div><hr>'
-                } else if (item.Status === "In Progress") {
-                    document.getElementById("repairs-tab").innerHTML = ""
-                    document.getElementById("repairs-tab").innerHTML += '<div class="row align-items-center"><div class="col-7"><span style="font-size: 1em">' + item.Make + " " + item.Model + '</span><br><span style="font-size: 0.75em">Mechanic: ' + item.StaffFname + " " + item.StaffLname + '</span></div><div class="col-2"><button onclick="repairDone(' + item.ID + ')" class="btn btn-success">Done</button></div><div class="col-2"><button onclick="delayRepair(' + item.ID + ')" class="btn btn-info">Delay</button></div></div><hr>'
+            //            console.log(mechanics);
 
-                    document.getElementById("notes-tab").innerHTML = ""
+            document.getElementById("cars-tab").innerHTML = ""
+            document.getElementById("repairs-tab").innerHTML = ""
+            document.getElementById("notes-tab").innerHTML = ""
+
+            data.forEach((item) => {
+                if (item.Status === "Incomplete" || item.Status === "Delayed") {
+
+                    var elements = ''
+
+                    if (item.Status === "Incomplete") {
+
+                        mechanics.forEach((mech) => {
+                            elements += '<a class="dropdown-item" onclick="startRepair(' + item.ID + ', ' + mech.id + ')" href="#">' + mech.fname + " " + mech.lname + '</a>'
+                        });
+
+
+                        document.getElementById("cars-tab").innerHTML += '<div class="row align-items-center"><div class="col-9"><b>' + item.Make + " " + item.Model + '</b> <br>' +
+                            item.Notes + '</div><div class="col-2"> \
+<div class="dropdown"> \
+<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> \
+Start \
+    </button> \
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' + elements + '</div></div></div></div><hr>' 
+                    } else if (item.Status === "Delayed") {
+                        document.getElementById("cars-tab").innerHTML += '<div class="row align-items-center"><div class="col-9"><b>' + item.Make + " " + item.Model + " <span style=\"padding: 0.25em; color: white; background-color: gray\">Delayed</span>"  + '</b> <br>' +
+                            item.Notes + '</div><div class="col-2"> \
+<button onclick=resumeRepair(' + item.ID + ') class="btn btn-primary">Resume</button> \
+    </div></div><hr>' 
+                    }
+
+
+                } else if (item.Status === "In Progress") {
+                    document.getElementById("repairs-tab").innerHTML += '<div class="row align-items-center"><div class="col-7"><span style="font-size: 1em">' + item.Make + " " + item.Model + '</span> <span style="font-size: 0.6em">' + item.RegNumber + '</span><br><span style="font-size: 0.75em">Mechanic: ' + item.StaffFname + " " + item.StaffLname + '</span></div><div class="col-2"><button onclick="repairDone(' + item.ID + ')" class="btn btn-success">Done</button></div><div class="col-2"><button onclick="delayRepair(' + item.ID + ')" class="btn btn-info">Delay</button></div></div><hr>'
+
                     document.getElementById("notes-tab").innerHTML +=
-                        '<div class="mb-3 row align-items-center"><div style="font-size: 0.6em" class="col-2">' + item.Make + " " + item.Model + '</div><div class="col-10"><textarea class="form-control" id="notes-' + item.ID + '"></textarea></div></div>'
+                        '<div class="mb-3 row align-items-center"><div style="font-size: 0.6em" class="col-2">' + item.Make + " " + item.Model + " " + item.RegNumber + '</div><div class="col-10"><textarea class="form-control" id="notes-' + item.ID + '"></textarea></div></div>'
                     document.getElementById("notes-" + item.ID).innerHTML = item.Notes
                 }
             });
@@ -174,8 +220,8 @@
 
     function usePart(partID) {
         //alert("Part ID is " + partID + ". This part will have its quantity deduced by one.");
-        xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=usepart&partid=' + partID, true);
-        xmlhttp.send();
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=repairdone&partid=' + partID + '&branchid=' + document.getElementById("branchSelect").value)
+        //loadData(document.getElementById("branchSelect").value)
     }
 
     /*function orderPart(partID) {
@@ -188,22 +234,38 @@
         xmlhttp.send();
     }*/
 
+    function startRepair(repairID, mechanicID) {
+        //        alert("Repair with id " + repairID + " was started and assigned to mechanic with id " + mechanicID)
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=startrepair&serviceid=' + repairID + '&mechanicid=' + mechanicID).then(function() {
+            loadData(document.getElementById("branchSelect").value)
+        })
+    }
+
+    function resumeRepair(repairID) {
+        //        alert("Repair with id " + repairID + " was resumed")
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=resumerepair&serviceid=' + repairID).then(function() {
+            loadData(document.getElementById("branchSelect").value)
+        })
+    }
+
     function repairDone(serviceID) {
         //alert("Service ID is " + serviceID + ". This service will have its status set to done.");
-        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=repairdone&serviceid=' + serviceID)
-        loadData(document.getElementById("branchSelect").value)
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=repairdone&serviceid=' + serviceID).then(function() {
+            loadData(document.getElementById("branchSelect").value)
+        })
     }
 
     function delayRepair(serviceID) {
         //alert("Service ID is " + serviceID + ". This service will have its status set to delayed.");
-        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=delayrepair&serviceid=' + serviceID)
-        loadData(document.getElementById("branchSelect").value)
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=delayrepair&serviceid=' + serviceID).then(function() {
+            loadData(document.getElementById("branchSelect").value)
+        })
     }
 
     function enterPage() {
         if (document.getElementById("branchSelect").value === "") {
-            loadData("DUN55412")
-            document.getElementById("branchSelect").value = "DUN55412"
+            loadData("DD1")
+            document.getElementById("branchSelect").value = "DD1"
             document.getElementById("entrance").hidden = true
             document.getElementById("main-content").hidden = false
         } else {

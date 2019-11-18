@@ -10,9 +10,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" href="../styles.css">
+        <title>Branch Supervisor</title>
 
-        <title>Executive Manager</title>
+        <script src="insert-product-request.js"></script>
 
     </head>
 
@@ -27,27 +27,29 @@
                 <div class="col-10 content">
                     <div class="row">
 
-                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-3 offset-1">Branch Info</div>
+                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-4 offset-1">Service - View</div>
                     </div>
 
                     <div style="margin-top: 3em;" class="row">
-
-                        <div class="dev col-10 offset-1">
+                        <div style="height: 75vh" class="overflow-auto col-10 offset-1">
 
                             <table class="table table-striped">
                                 <div class="table-responsive">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Address</th>
-                                            <th>Contact Number</th>
+                                            <th>Service Start Date</th>
+                                            <th>Service Expected End Date</th>
+                                            <th>Service End Date</th>
+                                            <th>Notes</th>
+                                            <th>Status</th>
+                                            <th>Staff ID</th>
+                                            <th>Branch ID</th>
+                                            <th>Registration Number</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                            require '../functions.php';
-                                            print_branch_info();
-                                        ?>
+                                        <?php require '../functions.php'; display_services(); ?>
                                     </tbody>
                                 </div>
                             </table>
@@ -57,6 +59,8 @@
                     </div>
 
                 </div>
+
+
 
             </div>
 

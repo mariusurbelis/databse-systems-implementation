@@ -50,11 +50,11 @@ function print_order_info()
     while ($row = $result->fetch_assoc()) {
         echo
             '<tr>
-                  <td scope="row">' . $row["ID"] . '</td>
-                  <td>' . $row["BranchID"] . '</td>
+                  <td scope="row">' . $row["BranchID"] . '</td>
                   <td> ' . $row["PartDetails"] . '</td>
                   <td> ' . $row["Quantity"] . '</td>
                   <td> ' . $row["PartTypeID"] . '</td>
+                  <td> <button class="btn btn-primary">Confirm</button> </td>
                 </tr>';
     }
 
@@ -74,9 +74,10 @@ function print_supplier_info()
     while ($row = $result->fetch_assoc()) {
         echo
             '<tr>
-                  <td scope="row">' . $row["ID"] . '</td>
+                  <td scope="row">' . $row["Name"] . '</td>
                   <td>' . $row["ContactNumber"] . '</td>
                   <td> ' . $row["Address"] . '</td>
+                  <td> <button onclick=editSupplier('. $row["ID"] .') class="btn btn-primary">Edit</button> </td>
                 </tr>';
     }
     mysqli_close($con);
@@ -101,6 +102,56 @@ function display_clients()
                   <td> ' . $row["ContactNumber"] . '</td>
                   <td> ' . $row["Address"] . '</td>
                   <td> ' . $row["Email"] . '</td>
+                </tr>';
+    }
+    mysqli_close($con);
+}
+
+function display_vehicles()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3u18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $result = mysqli_query($con, "SELECT * FROM vehicle;");
+
+    while ($row = $result->fetch_assoc()) {
+        echo
+            '<tr>
+                  <td scope="row">' . $row["RegNumber"] . '</td>
+                  <td>' . $row["Make"] . '</td>
+                  <td> ' . $row["Mileage"] . '</td>
+                  <td> ' . $row["Model"] . '</td>
+                  <td> ' . $row["ClientID"] . '</td>
+                </tr>';
+    }
+    mysqli_close($con);
+}
+
+function display_services()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3u18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $result = mysqli_query($con, "SELECT * FROM Service;");
+
+    while ($row = $result->fetch_assoc()) {
+        echo
+            '<tr>
+                  <td scope="row">' . $row["ID"] . '</td>
+                  <td> ' . $row["ServiceStart"] . '</td>
+                  <td> ' . $row["ServiceExpectedEnd"] . '</td>
+                  <td> ' . $row["ServiceActualEnd"] . '</td>
+                  <td> ' . $row["Notes"] . '</td>
+                  <td> ' . $row["Status"] . '</td>
+                  <td> ' . $row["StaffID"] . '</td>
+                  <td> ' . $row["BranchID"] . '</td>
+                  <td> ' . $row["RegNumber"] . '</td>
                 </tr>';
     }
     mysqli_close($con);

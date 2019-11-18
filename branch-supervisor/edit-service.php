@@ -31,7 +31,7 @@
                 <div class="col-10 content">
                     <div class="row">
 
-                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-4 offset-1">Client - Edit</div>
+                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-4 offset-1">Service - Edit</div>
                     </div>
 
                     <div class="row mt-5">
@@ -39,8 +39,8 @@
 
                             <div class="row">
                                 <div class="col-3">
-                                    <p>Please Enter ID of Client to be Edited: <input placeholder="ID" type="text" id="ID"></p>
-                                    <button style="margin-top: 1em" class="btn btn-primary" onclick="sendClientData()" id="submit" type="button">Submit</button>
+                                    <p>Please Enter ID of the Service to be edited: <input placeholder="ID" type="text" id="ID"></p>
+                                    <button style="margin-top: 1em" class="btn btn-primary" onclick="sendServiceData()" id="submit" type="button">Submit</button>
                                 </div>
                             </div>
 
@@ -52,26 +52,38 @@
                                     <table class="table table-striped">
                                         <div class="table-responsive">
                                             <tbody>
-                                                <tr>
-                                                    <td>Forename: </td>
-                                                    <td><input placeholder="Forename" type="text" id="FName"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Surname: </td>
-                                                    <td><input placeholder="Surname" type="text" id="LName"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Contact Number: </td>
-                                                    <td><input placeholder="Contact Number" type="text" id="ContactNumber" width="150%"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Address: </td>
-                                                    <td><input placeholder="Address" type="text" id="Address"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Email: </td>
-                                                    <td><input placeholder="Email" type="text" id="Email"></td>
-                                                </tr>
+                                            <tr>
+                                                <td>Service Start Date: </td>
+                                                <td><input placeholder="Service Start Date" type="text" id="ServiceStart"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Service Expected End Date: </td>
+                                                <td><input placeholder="Service Expected End Date" type="text" id="ServiceExpectedEnd"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Service Actual End Date: </td>
+                                                <td><input placeholder="Service Actual End Date" type="text" id="ServiceActualEnd"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Notes: </td>
+                                                <td><input placeholder="Notes" type="text" id="Notes"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status: </td>
+                                                <td><input placeholder="Status" type="text" id="Status"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Staff ID: </td>
+                                                <td><input placeholder="Staff ID" type="text" id="StaffID"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Branch ID </td>
+                                                <td><input placeholder="Branch ID" type="text" id="BranchID"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Registration Number: </td>
+                                                <td><input placeholder="AB01 XYZ" type="text" id="RegNumber"></td>
+                                        </tr>
 
                                             </tbody>
                                         </div>

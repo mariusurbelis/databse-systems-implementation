@@ -1,71 +1,103 @@
 <html>
 
-<head>
+    <head>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+        <link rel="stylesheet" href="../styles.css">
 
-    <title>Executive Manager</title>
+        <title>Executive Manager</title>
 
-    <script src="inser-supplier-info.js"></script>
+    </head>
 
-</head>
+    <body>
 
-<body>
+        <div class="container-fluid">
 
-    <div class="container-fluid">
+            <div class="row">
 
-        <div class="row">
+                <?php include "sidebar.html" ?>
 
+                <div class="col-10 content">
+                    <div class="row">
 
-            <div style="background: #5D5C61; height: 100vh;" class="col-2 text-center sidebar">
-                <b>
-                    <p style="color: #938E94; font-size: 3em; margin-top: 0.5em">Executive Manager</p>
-                </b>
-                &nbsp;
-                <a href="order-info.php">
-                    <p class="nav-item">Orders</p>
-                </a>
-                <a href="branch-info.php">
-                    <p class="nav-item">Branch Info</p>
-                </a>
-                <a href="">
-                    <p class="nav-item"><b>Supplier Info</b></p>
-                </a>
-                <a href="">
-                    <p class="nav-item">Sales Trends</p>
-                </a>
-            </div>
+                        <div style="margin-top: 1em; font-size: 2.6em;" class="col-3 offset-1">Supplier Management</div>
+                    </div>
 
-            <div class="col-10 content">
-                <div class="row">
+                    <div style="margin-top: 3em;" class="row">
 
-                    <div style="margin-top: 1em; font-size: 2.6em;" class="col-3 offset-1">Supplier Info</div>
-                </div>
+                        <div class="dev col-10 offset-1">
 
-                <div style="margin-top: 3em;" class="row">
+                            <div class="row">
 
-                    <div class="dev col-10 offset-1">
-                        <table class="table table-striped">
-                            <div class="table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Contact Number</th>
-                                        <th>Supplier Address</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    require '../functions.php';
-                                    print_supplier_info();
-                                    ?>
-                                </tbody>
+                                <div class="col-6">
+                                    <table class="table table-striped">
+                                        <div class="table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Contact Number</th>
+                                                    <th>Address</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+    require '../functions.php';
+                print_supplier_info();
+                                                ?>
+                                            </tbody>
+                                        </div>
+                                    </table>
+                                </div>
+
+                                <div id="edit-tab" class="col-6">
+
+                                    <table class="table">
+                                        <div class="table-responsive">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input id="name" class="form-control" placeholder="Name">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="contactnumber" class="form-control" placeholder="Contact Number">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="address" class="form-control" placeholder="Address">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="edit-buttons" hidden>
+                                                        <button onclick="updateSupplier()" class="btn btn-primary">Update</button>
+                                                        <button onclick="deleteSupplier()" class="btn btn-danger">Delete</button>
+                                                    </td>
+                                                    <td id="create-buttons">
+                                                        <button onclick="createSupplier()" class="btn btn-success">Create</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </div>
+                                    </table>
+
+                                </div>
+
                             </div>
-                        </table>
+
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -74,8 +106,54 @@
 
         </div>
 
-    </div>
-
-</body>
+    </body>
 
 </html>
+
+<script>
+    var SupplierID
+
+    function editSupplier(ID) {
+        SupplierID = ID
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=getsuppliers')
+            .then(function(response) {
+            return response.json();
+        })
+            .then(function(data) {
+            console.log(data);
+            //document.getElementById("part-table").innerHTML = "";
+            data.forEach((item) => {
+                if (item.ID == ID) {
+                    document.getElementById("name").value = item.Name
+                    document.getElementById("contactnumber").value = item.ContactNumber
+                    document.getElementById("address").value = item.Address
+                }
+            });
+            document.getElementById("edit-buttons").hidden = false
+            document.getElementById("create-buttons").hidden = true
+        });
+    }
+
+    function updateSupplier() {
+        alert("Requires implementation")
+    }
+
+    function deleteSupplier() {
+        alert("Requires implementation")
+    }
+
+    function createSupplier() {
+        alert("Requires implementation")
+
+        var obj = 
+            {
+                'ID': document.getElementById("ID").value,
+                'Name': document.getElementById("Name").value,
+                'ContactNumber': document.getElementById("ContactNumber").value,
+                'Address': document.getElementById("Address").value,
+            }
+
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=addsupplier&data=' JSON.stringify(obj))
+
+    }
+</script>
