@@ -31,7 +31,7 @@
                     </div>
 
                     <div style="margin-top: 3em;" class="row">
-                        <div class="col-10 offset-1">
+                        <div style="height: 80vh" class="overflow-auto col-10 offset-1">
 
                             <table class="table table-striped">
                                 <div class="table-responsive">

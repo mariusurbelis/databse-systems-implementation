@@ -35,14 +35,7 @@
                             <table class="table table-striped">
                                 <div class="table-responsive">
                                     <tbody>
-                                        <tr>
-                                            <td>Service Start Date: </td>
-                                            <td><input placeholder="Service Start Date" type="text" id="ServiceStart"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Service Expected End Date: </td>
-                                            <td><input placeholder="Service Expected End Date" type="text" id="ServiceExpectedEnd"></td>
-                                        </tr>
+
                                         <tr>
                                             <td>Notes: </td>
                                             <td><input placeholder="Notes" type="text" id="Notes"></td>
@@ -55,23 +48,31 @@
                                             <td>Registration Number: </td>
                                             <td><input placeholder="AB01 XYZ" type="text" id="RegNumber"></td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <td>Service Start Date: </td>
+                                            <td><input placeholder="Service Start Date" type="text" id="ServiceStart"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Service Expected End Date: </td>
+                                            <td><input placeholder="Service Expected End Date" type="text" id="ServiceExpectedEnd"></td>
+                                        </tr>
+
                                     </tbody>
                                 </div>
                             </table>
 
-                            <button style="margin-top: 1em" class="btn btn-primary" onclick="sendClientData()" id="submit" type="button">Submit</button>
+                            <button style="margin-top: 1em" class="btn btn-primary" onclick="sendServiceData()" id="submit" type="button">Submit</button>
 
                             <script>
-                                function sendClientData() {
+                                function sendServiceData() {
 
                                     var obj = {
                                         //service data
-                                        'ServiceStart': document.getElementById("ServiceStart").value,
-                                        'ServiceExpectedEnd': document.getElementById("ServiceExpectedEnd").value,
-                                        'Notes': document.getElementById("Notes").value,
+                                        'Notes': document.getElementById("Notes").value,                                     
                                         'BranchID': document.getElementById("BranchID").value,
                                         'RegNumber': document.getElementById("RegNumber").value,
+                                        'ServiceStart': document.getElementById("ServiceStart").value,
+                                        'ServiceExpectedEnd': document.getElementById("ServiceExpectedEnd").value,
                                     }
 
                                     if (window.XMLHttpRequest) {
@@ -82,10 +83,15 @@
                                     xmlhttp.onreadystatechange = function() {
                                         if (this.readyState == 4 && this.status == 200) {
                                             document.write(this.responseText)
+                                            showServiceScreen();
                                         }
                                     };
                                     xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=addservice&data=' + JSON.stringify(obj), true);
                                     xmlhttp.send();
+                                }
+                                function showServiceScreen()
+                                {
+                                    window.location.href='https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/branch-supervisor/view-service.php';
                                 }
                             </script>
 

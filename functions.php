@@ -32,6 +32,7 @@ function print_branch_info()
                   <td scope="row">' . $row["ID"] . '</td>
                   <td>' . $row["Address"] . '</td>
                   <td> ' . $row["ContactNumber"] . '</td>
+                  <td> <button onclick="editBranch(\'' . $row["ID"] . '\')" class="btn btn-primary">Edit</button> </td>
                 </tr>';
     }
     mysqli_close($con);
@@ -53,7 +54,6 @@ function print_order_info()
                   <td scope="row">' . $row["BranchID"] . '</td>
                   <td> ' . $row["PartDetails"] . '</td>
                   <td> ' . $row["Quantity"] . '</td>
-                  <td> ' . $row["PartTypeID"] . '</td>
                   <td> <button class="btn btn-primary">Confirm</button> </td>
                 </tr>';
     }
@@ -78,6 +78,33 @@ function print_supplier_info()
                   <td>' . $row["ContactNumber"] . '</td>
                   <td> ' . $row["Address"] . '</td>
                   <td> <button onclick=editSupplier('. $row["ID"] .') class="btn btn-primary">Edit</button> </td>
+                </tr>';
+    }
+    mysqli_close($con);
+}
+
+function print_staff_info()
+{
+    $con = mysqli_connect("silva.computing.dundee.ac.uk", "19ac3u18", "a1bc23", "19ac3d18");
+    // Check connection
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $result = mysqli_query($con, "SELECT * FROM Staff;");
+
+    while ($row = $result->fetch_assoc()) {
+        echo
+            '<tr>
+                  <td scope="row">' . $row["FName"] . '</td>
+                  <td>' . $row["LName"] . '</td>
+                  <td> ' . $row["Role"] . '</td>
+                  <td> ' . $row["Discplinary"] . '</td>
+                  <td> ' . $row["CheckedIn"] . '</td>
+                  <td> ' . $row["CheckedOut"] . '</td>
+                  <td> ' . $row["BranchID"] . '</td>
+                  <td> ' . $row["Password"] . '</td>
+                  <td> <button onclick=editStaff('. $row["ID"] .') class="btn btn-primary">Edit</button> </td>
                 </tr>';
     }
     mysqli_close($con);

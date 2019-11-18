@@ -30,7 +30,7 @@
 
                     <div style="margin-top: 3em;" id="initialRow" class="row">
                         <div class="dev col-3 offset-1">
-                            <p>Please Enter ID of vehicle to be Deleted: <input placeholder="RegNumber" type="text" id="RegNumber"></p>
+                            <p>Please enter registration number of vehicle to be deleted: <input placeholder="RegNumber" type="text" id="RegNumber"></p>
                             <button style="margin-top: 1em" class="btn btn-primary" onclick="getVehicle()" type="button">Submit</button>
                         </div>
                     </div>
@@ -45,35 +45,40 @@
 
                     <script>
 
-                        function getVehicle() {
+                        function getVehicle() 
+                        {
                             fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=getvehicle&regnumber='+ document.getElementById("RegNumber").value)
                                 .then(function (response) {
                                 return response.json();
                             })
-                                .then(function (data) {
+                                .then(function (data) 
+                                      {
                                 console.log(data);
-                                data.forEach((item) => {
+                                data.forEach((item) =>
+                                             {
                                     document.getElementById("response-text").innerHTML = "Are you sure you want to delete " + item.RegNumber + " with Client ID: " + item.ClientID;
 
                                     document.getElementById("confirmRow").hidden = false;
                                     document.getElementById("initialRow").hidden = true;
-
                                 });
                             });
                         }
 
-
-                        function deleteVehicle() {
-
+                        function deleteVehicle() 
+                        {
                             console.log(document.getElementById("RegNumber").value)
 
-                            if (window.XMLHttpRequest) {
+                            if (window.XMLHttpRequest) 
+                            {
                                 xmlhttp = new XMLHttpRequest();
-                            } else {
+                            } else 
+                            {
                                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                             }
-                            xmlhttp.onreadystatechange = function() {
-                                if (this.readyState == 4 && this.status == 200) {
+                            xmlhttp.onreadystatechange = function() 
+                            {
+                                if (this.readyState == 4 && this.status == 200) 
+                                {
                                     document.getElementById("response-text").innerHTML = this.responseText
                                     document.getElementById("submit").hidden = true;
                                 }

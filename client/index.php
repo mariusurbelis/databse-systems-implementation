@@ -9,11 +9,11 @@
     <style>
 
         .dev {
-/*            border: solid 2px green;*/
+            /*            border: solid 2px green;*/
         }
 
         .devr {
-/*            border: solid 2px red;*/
+            /*            border: solid 2px red;*/
         }
 
         a {
@@ -32,9 +32,9 @@
     <div class="container-fluid">
         <div style="color: white; background-color: #6C7A89; height: 10vh" class="devr row align-items-center">
             <div class="col-4 dev h1 pl-5 text-left">ASHOME REPAIRS</div>
-<!--
-            <div hidden id="logged-in" class="col-4 offset-4 dev h5 pr-5 text-right">John Doe | <a onclick="logout()" href="#" >Logout</a></div>
-            <div id="not-logged-in" class="col-4 offset-4 dev h5 pr-5 text-right"><a onclick="promptLogin()" href="#">Login</a></div>
+            <!--
+<div hidden id="logged-in" class="col-4 offset-4 dev h5 pr-5 text-right">John Doe | <a onclick="logout()" href="#" >Logout</a></div>
+<div id="not-logged-in" class="col-4 offset-4 dev h5 pr-5 text-right"><a onclick="promptLogin()" href="#">Login</a></div>
 -->
         </div>
 

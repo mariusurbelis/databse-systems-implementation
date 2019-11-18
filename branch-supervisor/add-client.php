@@ -92,13 +92,13 @@
                                         'ContactNumber': document.getElementById("ContactNumber").value,
                                         'Address': document.getElementById("Address").value,
                                         'Email': document.getElementById("Email").value,
-                                        
+
                                         //vehicle data
                                         'RegNumber': document.getElementById("RegNumber").value,
                                         'Make': document.getElementById("Make").value,
                                         'Model': document.getElementById("Model").value,
                                         'Mileage': document.getElementById("Mileage").value,
-                                        
+
                                         //service data
                                         'ServiceStart': document.getElementById("ServiceStart").value,
                                         'ServiceExpectedEnd': document.getElementById("ServiceExpectedEnd").value,
@@ -113,10 +113,17 @@
                                     xmlhttp.onreadystatechange = function() {
                                         if (this.readyState == 4 && this.status == 200) {
                                             document.write(this.responseText)
+                                            //showViewClientScreen();
                                         }
                                     };
+                                    console.log("just before fetch")
                                     xmlhttp.open("GET", 'https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=addclient&data=' + JSON.stringify(obj), true);
                                     xmlhttp.send();
+                                }
+
+                                function showViewClientScreen()
+                                {
+                                    window.location.href='https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/branch-supervisor/view-client.php';
                                 }
                             </script>
 
@@ -141,7 +148,7 @@
                                             <td><input placeholder="Notes" type="text" id="Notes"></td>
                                         </tr>
                                         <tr><td></td><td></td></tr>
-                                        
+
                                     </tbody>
                                 </div>
                             </table>

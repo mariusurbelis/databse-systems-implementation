@@ -36,7 +36,7 @@
 
                             <div class="row">
 
-                                <div class="col-6">
+                                <div class="col-8">
                                     <table class="table table-striped">
                                         <div class="table-responsive">
                                             <thead>
@@ -57,7 +57,7 @@
                                     </table>
                                 </div>
 
-                                <div id="edit-tab" class="col-6">
+                                <div id="edit-tab" class="col-4">
 
                                     <table class="table">
                                         <div class="table-responsive">
@@ -135,25 +135,45 @@
     }
 
     function updateSupplier() {
-        alert("Requires implementation")
+        var obj = 
+            {
+                'ID': SupplierID,
+                'Name': document.getElementById("name").value,
+                'ContactNumber': document.getElementById("contactnumber").value,
+                'Address': document.getElementById("address").value,
+            }
+
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=updatesupplier&data=' + JSON.stringify(obj)).then(function(response) {
+            document.getElementById("name").value = ""
+            document.getElementById("contactnumber").value = ""
+            document.getElementById("address").value = ""
+            location.reload()
+        });
     }
 
     function deleteSupplier() {
-        alert("Requires implementation")
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=deletesupplier&id=' + SupplierID).then(function(response) {
+            document.getElementById("name").value = ""
+            document.getElementById("contactnumber").value = ""
+            document.getElementById("address").value = ""
+            location.reload()
+        });
     }
 
     function createSupplier() {
-        alert("Requires implementation")
-
         var obj = 
             {
-                'ID': document.getElementById("ID").value,
-                'Name': document.getElementById("Name").value,
-                'ContactNumber': document.getElementById("ContactNumber").value,
-                'Address': document.getElementById("Address").value,
+                'Name': document.getElementById("name").value,
+                'ContactNumber': document.getElementById("contactnumber").value,
+                'Address': document.getElementById("address").value,
             }
 
-        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=addsupplier&data=' JSON.stringify(obj))
+        fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=addsupplier&data=' + JSON.stringify(obj)).then(function(response) {
+            document.getElementById("name").value = ""
+            document.getElementById("contactnumber").value = ""
+            document.getElementById("address").value = ""
+            location.reload()
+        });
 
     }
 </script>

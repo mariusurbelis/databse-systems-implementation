@@ -45,7 +45,7 @@
                 <div style="height: 50vh" class="row">
                     <div class="devr col-7">
                         <div class="row">
-                            <div style="background-color: #bbbbbb; color: black;" class="text-left mt-5 mb-0 p-3 h4 col-10 offset-1">Cars awaiting repair</div>
+                            <div style="background-color: #bbbbbb; color: black;" class="text-left mt-5 mb-0 p-3 h4 col-10 offset-1">Car Service Waiting List</div>
                         </div>
                         <div class="row">
                             <div id="cars-tab" style="background-color: #ffffff; color: black; height: 35vh;" class="overflow-auto p-3 col-10 offset-1">
@@ -150,6 +150,12 @@
 </body>
 
 <script>
+    var ServiceIDs = []
+
+    //setup before functions
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 1500;  //time in ms, 5 second for example
+
     function loadData(branchID) {
         var mechanics = []
 
@@ -180,6 +186,9 @@
             document.getElementById("repairs-tab").innerHTML = ""
             document.getElementById("notes-tab").innerHTML = ""
 
+            // Clear the array
+            ServiceIDs.length = 0
+
             data.forEach((item) => {
                 if (item.Status === "Incomplete" || item.Status === "Delayed") {
 
@@ -208,12 +217,41 @@ Start \
 
 
                 } else if (item.Status === "In Progress") {
+                    // Add the item.ID to the array
+                    ServiceIDs.push(item.ID)
+
                     document.getElementById("repairs-tab").innerHTML += '<div class="row align-items-center"><div class="col-7"><span style="font-size: 1em">' + item.Make + " " + item.Model + '</span> <span style="font-size: 0.6em">' + item.RegNumber + '</span><br><span style="font-size: 0.75em">Mechanic: ' + item.StaffFname + " " + item.StaffLname + '</span></div><div class="col-2"><button onclick="repairDone(' + item.ID + ')" class="btn btn-success">Done</button></div><div class="col-2"><button onclick="delayRepair(' + item.ID + ')" class="btn btn-info">Delay</button></div></div><hr>'
 
                     document.getElementById("notes-tab").innerHTML +=
                         '<div class="mb-3 row align-items-center"><div style="font-size: 0.6em" class="col-2">' + item.Make + " " + item.Model + " " + item.RegNumber + '</div><div class="col-10"><textarea class="form-control" id="notes-' + item.ID + '"></textarea></div></div>'
                     document.getElementById("notes-" + item.ID).innerHTML = item.Notes
                 }
+
+                //checking when mechanic stops typing
+                ServiceIDs.forEach((id) => {
+                    $('#notes-' + id).keyup(function(){
+                        clearTimeout(typingTimer);
+                        if ($('#notes-' + ServiceIDs[0]).val) {
+                            typingTimer = setTimeout(function(){
+                                var notescontent = $('#notes-' + id).val();
+                                console.log("For the ID: " + id + " it's " + notescontent);
+                                
+                                // Here you will be sending a single note update to the api UpdateNotesOf(ID, notes)
+                                var obj =
+                                    {
+                                        'ID' : id,
+                                        'Notes' : notescontent,
+                                    }
+                                
+                                // sent to api
+                                fetch('https://zeno.computing.dundee.ac.uk/2019-ac32006/team18/dev/api/?api_key=ashome&command=mechanicnotesupdate&data=' + JSON.stringify(obj))
+                                
+                            }, doneTypingInterval);
+                        }
+                    });
+                }); 
+
+
             });
         });
     }

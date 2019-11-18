@@ -115,14 +115,14 @@
                                 function saveDataToDB() 
                                 {
                                     var obj = 
-                                    {
-                                        'ID': document.getElementById("ID").value,
-                                        'FName': document.getElementById("FName").value,
-                                        'LName': document.getElementById("LName").value,
-                                        'ContactNumber': document.getElementById("ContactNumber").value,
-                                        'Address': document.getElementById("Address").value,
-                                        'Email': document.getElementById("Email").value,
-                                    }
+                                        {
+                                            'ID': document.getElementById("ID").value,
+                                            'FName': document.getElementById("FName").value,
+                                            'LName': document.getElementById("LName").value,
+                                            'ContactNumber': document.getElementById("ContactNumber").value,
+                                            'Address': document.getElementById("Address").value,
+                                            'Email': document.getElementById("Email").value,
+                                        }
 
                                     if (window.XMLHttpRequest) {
                                         xmlhttp = new XMLHttpRequest();
@@ -132,7 +132,7 @@
                                     xmlhttp.onreadystatechange = function() {
                                         if (this.readyState == 4 && this.status == 200) {
                                             // document.write(this.responseText)
-                                            clearInputFields()
+                                            clearClientInputFields()
                                         }
                                     };
 
